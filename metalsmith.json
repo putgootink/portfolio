@@ -1,0 +1,45 @@
+{
+  "source": "src",
+  "destination": "build",
+  "plugins": {
+    "metalsmith-env": {},
+    "metalsmith-markdown": true,
+    "metalsmith-permalinks": {
+      "relative": false,
+      "linksets": [
+        {
+          "match": { "collection": "pages" },
+          "pattern": ":route"
+        }
+      ]
+    },
+    "metalsmith-collections": {
+      "filmografie": {
+        "sortBy": "date",
+        "reverse": true
+      }
+    },
+    "metalsmith-register-helpers": {
+      "directory": "src/helpers"
+    },
+    "metalsmith-layouts": {
+      "engine": "handlebars",
+      "partials": "partials"
+    },
+    "metalsmith-in-place": {
+      "engine": "handlebars"
+    },
+    "metalsmith-postcss": {
+      "plugins": {
+        "postcss-import": {},
+        "postcss-cssnext": {}
+      },
+      "map": true
+    },
+    "metalsmith-browser-sync" : {
+      "notify": false,
+      "port": 3010,
+      "files": ["src/**/*"]
+    }
+  }
+}
